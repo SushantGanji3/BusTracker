@@ -1,0 +1,102 @@
+/*https://coolors.co/143642-fea82f-a1869e-137547-a8201a*/
+/**
+* @Reagan Green= #114D11, Reagan Silver=#CCCCCC 
+*/
+/*iPhone X width is 812px*/
+/*Galaxy s8 width is 1440 px cuz its just better :/ */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 100px;
+}
+
+main {
+  width: 812px;
+}
+
+.title {
+  font-family: "Source Sans Pro", sans-serif;
+  text-align: center;
+  background: #1c452a; 
+  font-size: 50 px;
+  height: 100px;
+  border: 2px;
+  color: white;
+  padding-top: 25px;
+}
+
+
+.wait, .load, .unarrive, .gone {
+  font-family: "Source Sans Pro", sans-serif;
+  font-Size: 10px;
+  text-align: center;
+  vertical-align: text-top; 
+  background: #ccc; 
+  color: white;
+  border: 7px solid #1c452a;
+  
+}
+
+.wait {
+  
+  height: 100px; 
+}
+
+.load {
+  
+  height: 300px;
+  padding: 0px;
+}
+.secondLane {
+  font-size:10px;
+  height: 100px;
+  background: #ffffff;
+  color: white;
+}
+.divider {
+  background: #ccc;
+  
+}
+.firstLane {
+  font-size:10px;
+  height: 100px;
+  background: white;
+  color: white;
+  
+}
+
+.busbank {
+  display: flex;
+  justify-content: left;
+  
+  flex-wrap: wrap;
+  cursor: grab;
+}
+.bus {
+  border: 1px solid black;
+  color: black;
+  padding: 0px 10px;
+  margin: 5px;  
+  background: url("/favicon.svg"), #6f8e79;
+}
+
+.gone {
+  height: 100px;
+}
+
+.emptySpace {
+  display: flex;
+  justify-content: center;
+  border: 2px solid #ccc;
+  padding: 0px 10px;
+  width: 30px;
+  height: 50px
+}
+/*
+not here & left(green): 6f8e79
+waiting loading(yellow): f8f86a
+broken down(red): d6332f
+alternate bus(purple): 9232a0
+*/
