@@ -1,31 +1,24 @@
 import "./App.css";
-import Busdata from "./data.json";
+import Busdata from "../public/data.json";
 import Draggable from "react-draggable";
 import { useState, useEffect } from "react";
-import { writeJsonFile } from "write-json-file";
-/*
-https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd/
+import Cryptr from "cryptr";
 
-for Bus, 
-num is standard/usual number,
-status is waiting/loading/not here/left
-altNum is the kids got switched to a dif bus ahead of time
-replacedNum is when bus broke down on way and need quick switch
-*/
+
+/*https://www.freecodecamp.org/news/how-to-add-drag-and-drop-in-react-with-react-beautiful-dnd*/
 
 const Bus = (props) => {
-  
+
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
   const handleStop = async (event, dragElement) => {
-    for(let Beta of Busdata) {
-      if(Beta.num == props.num) {
+    for (let Beta of Busdata) {
+      if (Beta.num == props.num) {
         Beta.x = dragElement.x;
         Beta.y = dragElement.y;
       }
     }
-    //await writeJsonFile('./data.json', Busdata);
     console.log(Busdata);
     setX(dragElement.x);
     setY(dragElement.y);
@@ -37,6 +30,9 @@ const Bus = (props) => {
     })
       .then((res) => {
         return res.json();
+      })
+      .then(function(result) {
+
       });
     for (let Beta of Busdata) {
       if (Beta.num == props.num && (Beta.x)) {
@@ -46,27 +42,35 @@ const Bus = (props) => {
     }
   });
 
-  
-  return (
-      <Draggable 
-        onStop={handleStop} 
-        position={{x: x, y: y}}
-        >
+  if (props.page == 2) {
+    return (
+      <Draggable
+        onStop={handleStop}
+        position={{ x: x, y: y }}
+      >
         <div className="bus">
           <h2>
             {props.num}
           </h2>
         </div>
-      </Draggable>);
+      </Draggable>
+    );
+  }
+  else {
+    return (
+      <div className="bus">
+        <h2>
+          {props.num}
+        </h2>
+      </div>
+    );
+  }
+
 }
-
-  
-  
-
 
 const BusNums = (props) => {
   const buses = Busdata.map((data) => {
-      return (<Bus num={data.num}/>);
+    return (<Bus num={data.num} page={props.page}/>);
   });
 
   return (
@@ -79,6 +83,7 @@ const TitleSection = (props) => {
   return (
     <div className="title">
       <h1> Reagan HS Bus Tracker</h1>
+      <button className="APLoginBtn" onClick={() => props.setPage(1)}>AP Login</button>
     </div>
   );
 };
@@ -92,7 +97,7 @@ const LoadingArea = (props) => {
         <h4>Second Lane</h4>
         <div className="emptySpace">Empty Bus Space</div>
       </div>
-      
+
       <div className="divider">
         <h6></h6>
       </div>
@@ -115,9 +120,9 @@ const UnarrivedArea = (props) => {
   return (
     <div className="unarrive">
       <h1>Bus Bank</h1>
-      <BusNums />
+      <BusNums page={props.page}/>
     </div>
-    
+
   );
 };
 
@@ -129,71 +134,103 @@ const GoneArea = (props) => {
   );
 };
 
-const HomePage = (props) => {
-  return(
-    <div>
+const APLogin = (props) => {
+  return (
+    <div className="login">
       <div>
-        <h1>Hyderabad Public Bus Tracking via Department of Busses of Telangana</h1>
+        <h1>AP Login</h1>
       </div>
       <div>
-        <button  onClick={() => setPage(1)} >
-          Student Login
+        <h3>Enter your AP Pin below:</h3>
+      </div>
+      <div>
+        <input id="APLoginInput" placeholder="PIN"></input>
+      </div>
+      <div className="APViewDiv">
+        <button className="backToHomeBtn" onClick={() => props.setPage(0)}>Back</button>
+        <button className="APView" onClick={() =>
+          getValueOfLogin() != "" ? props.setPage(2) : borderChange()
+        }>
+          Enter
         </button>
       </div>
-      <div>
-        <button  onClick={() => setPage(2)} >
-          AP Login
-        </button>
-      </div>
-        
+
+
+
     </div>
-      
+
   );
 };
+function getValueOfLogin() {
+  let input = document.getElementById("APLoginInput").value;
+  return(input);
+}
+/*
+function getEncryptedPass(){
+  let Cryptr = require('cryptr'),
+    cryptr = new Cryptr("SamuelIsSoPog");
 
+  var encryptedString = cryptr.encrypt(getValueOfLogin());
+
+  return encryptedString;
+}
+
+function checkPass(){
+  let encryptedPass = getEncryptedPass();
+  let Cryptr = require('cryptr'),
+    cryptr = new Cryptr("SamuelIsSoPog");
+  
+  let passDecrypted = cryptr.decrypt(encryptedPass);
+  console.log(passDecrypted);
+  if(passDecrypted === "1234"){
+    return "true";
+  }
+  return "false";
+}
+*/
+function borderChange() {
+  document.getElementById("APLoginInput").style.border = "5px solid red";
+}
 
 const APLogIn = (props) => {
   //code to enter the AP login pin/password
-  
+
 };
 
-const APView = (props) => {
-  //this is the app view with the dropabble functionality
-  return (
-    <div>
-      <TitleSection />
-      <WaitingArea />
-      <LoadingArea />
-      <UnarrivedArea />
-      <GoneArea />
-    </div>
-  );
-};
-
-
-
-//apparently you can only have one main div in a return
-//but you can have subdivs inside that main div
-//ye put everything into one
-//also the page that we are working on right now is for the APs?
-
-//yashas use this const for the ternary statement
-//setPage -> 1 when button is pressed to go to main page 
-//setPage -> 2 when button is pressed to go to AP Login page got it
-
-
-
-//Yashas creata nested ternary statment
-//const [ page, setPage ] = useState(0);
 
 export default function App() {
+  const [page, setPage] = useState(0);
   return (
     <div className="App">
       <main>
-        {
-          //page == 0 ? <StudentView /> : page == 1 ? <APLogIn /> : <APView />
+        {page == 0 ? (
+          <div>
+            <TitleSection setPage={setPage} />
+            <div className="bkgrdImg"> 
+              <WaitingArea />
+              <LoadingArea />
+            </div>
+            <UnarrivedArea page={page}/>
+            <GoneArea />
+          </div>
+        )
+        :
+        page == 1 ? (
+          <APLogin setPage={setPage} />
+        )
+          : (
+            <div>
+              <TitleSection setPage={setPage} />
+              <div className="bkgrdImg"> 
+                <WaitingArea />
+                <LoadingArea />
+              </div>
+              <UnarrivedArea page={page}/>
+              <GoneArea />
+            </div>
+          )
+
         }
-        <APView />  
       </main>
 
     </div>

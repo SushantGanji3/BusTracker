@@ -9,7 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 100px;
+  padding-left: 25.0em;
+  
 }
 
 main {
@@ -24,7 +25,8 @@ main {
   height: 100px;
   border: 2px;
   color: white;
-  padding-top: 25px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 
@@ -33,53 +35,58 @@ main {
   font-Size: 10px;
   text-align: center;
   vertical-align: text-top; 
-  background: #ccc; 
-  color: white;
-  border: 7px solid #1c452a;
+  color: #1c452a;
+
   
 }
 
+.unarrive, .gone {
+  border: 7px solid #1c452a;
+}
+
+
+.gone{
+  background:  #ccc; 
+}
+
+.unarrive{
+  background:  #ccc; 
+}
+
 .wait {
-  
+  background-color: transparent;
   height: 100px; 
 }
 
 .load {
-  
+  background-color: transparent;
   height: 300px;
-  padding: 0px;
+  
 }
-.secondLane {
-  font-size:10px;
+.secondLane, .firstLane {
+  font-size: 10px;
   height: 100px;
-  background: #ffffff;
-  color: white;
+  border: 1px solid black;
 }
 .divider {
   background: #ccc;
   
 }
-.firstLane {
-  font-size:10px;
-  height: 100px;
-  background: white;
-  color: white;
-  
-}
+
 
 .busbank {
   display: flex;
-  justify-content: left;
-  
+  justify-content: center;
   flex-wrap: wrap;
   cursor: grab;
+  background-color: #ccc;
 }
 .bus {
   border: 1px solid black;
   color: black;
   padding: 0px 10px;
   margin: 5px;  
-  background: url("/favicon.svg"), #6f8e79;
+  background: url("../favicon.svg"), #6f8e79;
 }
 
 .gone {
@@ -100,3 +107,41 @@ waiting loading(yellow): f8f86a
 broken down(red): d6332f
 alternate bus(purple): 9232a0
 */
+
+.APLoginBtn {
+  color: white;
+  background: #000000;
+  border: 2px solid white;
+  width: 100px;
+}
+.login{
+  text-align: center;
+  border: 2px solid black;
+  height: 300px;
+  color: white;
+  background: #6f8e79;
+  
+}
+
+.APViewDiv {
+  padding-top: 20px;
+}
+
+.APLoginInput {
+  padding: 20px;
+}
+
+::placeholder {
+  text-align: center;
+}
+
+.backToHomeBtn, .APView {
+  margin: 10px;
+  padding: 10px;
+}
+
+
+.bkgrdImg {
+  background-image: url("./images.jpg");
+  padding: 10px;
+}

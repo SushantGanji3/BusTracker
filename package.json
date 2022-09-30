@@ -12,7 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cryptr": "^6.0.3",
+    "firebase": "^9.10.0",
     "react-draggable": "^4.4.5",
+    "react-hooks-global-state": "^2.0.0",
+    "require": "^2.4.20",
     "write-json-file": "^5.0.0"
   },
   "devDependencies": {
