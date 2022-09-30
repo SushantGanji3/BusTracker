@@ -168,7 +168,7 @@ function getValueOfLogin() {
 /*
 function getEncryptedPass(){
   let Cryptr = require('cryptr'),
-    cryptr = new Cryptr("SamuelIsSoPog");
+    cryptr = new Cryptr("SamuelIsSoPog"); // this is the key lol
 
   var encryptedString = cryptr.encrypt(getValueOfLogin());
 
